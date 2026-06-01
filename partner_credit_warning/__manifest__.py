@@ -1,10 +1,10 @@
 {
     'name': 'Customer Credit Warning on Sale Order',
-    'version': '19.0.1.0.0',
+    'version': '17.0.1.0.0',
     'category': 'Sales/Sales',
     'summary': 'Warn or block sale order confirmation when customer exceeds credit limit — free Community alternative to Odoo Enterprise credit feature.',
     'description': """
-Customer Credit Warning on Sale Order for Odoo 19 (Free / LGPL-3)
+Customer Credit Warning on Sale Order for Odoo 17 (Free / LGPL-3)
 =================================================================
 - credit_limit field on each partner (0 = no limit)
 - Warn mode: popup lets salesperson confirm anyway or cancel
