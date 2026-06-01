@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_sale_credit_warning_wizard_form" model="ir.ui.view">
+        <field name="name">sale.credit.warning.wizard.form</field>
+        <field name="model">sale.credit.warning.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Credit Limit Warning">
+                <div class="o_dialog_warning" style="padding: 16px 0 8px 0;">
+                    <div class="text-center mb-3">
+                        <i class="fa fa-exclamation-triangle text-warning" style="font-size: 48px;" title="Credit Limit Warning"/>
+                    </div>
+                    <h4 class="text-center text-warning mb-3">Credit Limit Exceeded</h4>
+                    <p class="text-center text-muted mb-4">
+                        This customer has an outstanding balance above their credit limit.
+                    </p>
+                    <group>
+                        <field name="sale_order_id" readonly="1"/>
+                        <field name="partner_id" readonly="1"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="credit_balance" widget="monetary" readonly="1"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="credit_limit" widget="monetary" readonly="1"
+                               options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                    <p class="text-center mt-3">
+                        <strong>Do you want to confirm this order anyway?</strong>
+                    </p>
+                </div>
+                <footer>
+                    <button name="action_confirm_anyway" type="object"
+                            string="Confirm Anyway" class="btn-warning"/>
+                    <button name="action_cancel" type="object"
+                            string="Cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

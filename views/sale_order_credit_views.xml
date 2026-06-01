@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_sale_order_credit_warning_form" model="ir.ui.view">
+        <field name="name">sale.order.credit.warning.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Hidden computed fields loaded when partner changes -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_credit_balance" invisible="1"/>
+                <field name="partner_credit_limit" invisible="1"/>
+                <field name="partner_credit_exceeded" invisible="1"/>
+            </xpath>
+
+            <!-- Warning banner at top of sheet when credit exceeded -->
+            <xpath expr="//div[hasclass('oe_button_box')]" position="before">
+                <div class="alert alert-danger d-flex align-items-center gap-2 mb-2 py-2 px-3"
+                     invisible="not partner_credit_exceeded" role="alert">
+                    <i class="fa fa-exclamation-circle fa-lg" title="Credit Limit Exceeded"/>
+                    <div>
+                        <strong>Credit Limit Exceeded!</strong>
+                        — This customer's outstanding balance exceeds their configured credit limit.
+                        Confirming this order may be blocked or require manual override.
+                    </div>
+                </div>
+            </xpath>
+
+            <!-- Credit status group in Other Info tab -->
+            <xpath expr="//page[@name='other_information']" position="inside">
+                <group string="Credit Status" invisible="partner_credit_limit == 0">
+                    <field name="partner_credit_balance" readonly="1" string="Current Debt"/>
+                    <field name="partner_credit_limit" readonly="1" string="Credit Limit"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Credit Warning on Sale Order — Odoo 19</title>
+</head>
+<body>
+
+<!-- ============================================================
+     SECTION 1 — BRAND HEADER
+     ============================================================ -->
+<section class="sh_counter_section position-relative" style="margin-top:20px; margin-bottom:15px; padding:50px 0 0 0">
+  <div class="container">
+    <div style="width:100%; background-color:#fff7ed; padding:30px; border-radius:35px">
+
+      <!-- Logo + title row -->
+      <div class="row align-items-center mb-4">
+        <div class="col-lg-8 col-md-8 d-flex align-items-center gap-3">
+          <img src="icon.png" alt="Customer Credit Warning Icon" style="width:72px; height:72px; border-radius:16px; box-shadow:0 4px 16px rgba(234,88,12,.25)">
+          <div>
+            <div style="font-size:26px; font-weight:800; color:#1e293b; letter-spacing:-.02em">Customer Credit Warning on Sale Order</div>
+            <div style="font-size:14px; color:#ea580c; font-weight:600; margin-top:2px">by Randy Nguyen</div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 d-none d-md-flex justify-content-end align-items-center gap-2">
+          <span style="background:#ea580c; color:#fff; padding:6px 16px; border-radius:20px; font-size:13px; font-weight:700">✓ Community</span>
+          <span style="background:#c2410c; color:#fff; padding:6px 16px; border-radius:20px; font-size:13px; font-weight:700">✓ Enterprise</span>
+        </div>
+      </div>
+
+      <!-- KPI counter cards -->
+      <div class="row mt-2">
+        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 card-group">
+          <div class="w-100 shadow" style="padding:24px 20px; border-radius:12px; background-color:#fff; margin:10px 0">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <div style="font-size:14px; color:#64748b; font-weight:600; margin-bottom:4px">Check Modes</div>
+                <div style="font-size:28px; font-weight:800; color:#ea580c">2</div>
+              </div>
+              <div style="width:52px; height:52px; border-radius:50%; background:#fff7ed; display:flex; align-items:center; justify-content:center; font-size:24px">⚠️</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 card-group">
+          <div class="w-100 shadow" style="padding:24px 20px; border-radius:12px; background-color:#fff; margin:10px 0">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <div style="font-size:14px; color:#64748b; font-weight:600; margin-bottom:4px">Odoo Version</div>
+                <div style="font-size:28px; font-weight:800; color:#ea580c">19.0</div>
+              </div>
+              <div style="width:52px; height:52px; border-radius:50%; background:#fff7ed; display:flex; align-items:center; justify-content:center; font-size:24px">⚡</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 card-group">
+          <div class="w-100 shadow" style="padding:24px 20px; border-radius:12px; background-color:#fff; margin:10px 0">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <div style="font-size:14px; color:#64748b; font-weight:600; margin-bottom:4px">License</div>
+                <div style="font-size:28px; font-weight:800; color:#ea580c">LGPL-3</div>
+              </div>
+              <div style="width:52px; height:52px; border-radius:50%; background:#fff7ed; display:flex; align-items:center; justify-content:center; font-size:24px">🔓</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 card-group">
+          <div class="w-100 shadow" style="padding:24px 20px; border-radius:12px; background-color:#fff; margin:10px 0">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <div style="font-size:14px; color:#64748b; font-weight:600; margin-bottom:4px">Enterprise Cost</div>
+                <div style="font-size:28px; font-weight:800; color:#ea580c">$0</div>
+              </div>
+              <div style="width:52px; height:52px; border-radius:50%; background:#fff7ed; display:flex; align-items:center; justify-content:center; font-size:24px">💰</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA + badges row -->
+      <div class="row justify-content-between align-items-center mt-2">
+        <div class="col-lg-6">
+          <a href="mailto:nextstep.vina@gmail.com" style="text-decoration:none">
+            <div style="background:#ea580c; color:#fff; padding:12px 24px; border-radius:50px; display:inline-flex; align-items:center; gap:10px; font-size:15px; font-weight:700">
+              <span class="fa fa-envelope"></span>
+              Contact / Support &nbsp;·&nbsp; nextstep.vina@gmail.com
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-6 d-none d-lg-flex justify-content-end gap-2 align-items-center">
+          <span style="border:1px solid #ea580c; color:#ea580c; padding:6px 16px; border-radius:8px; font-size:13px; font-weight:600">Per-Partner Config</span>
+          <span style="border:1px solid #ea580c; color:#ea580c; padding:6px 16px; border-radius:8px; font-size:13px; font-weight:600">Warn or Block</span>
+          <span style="border:1px solid #ea580c; color:#ea580c; padding:6px 16px; border-radius:8px; font-size:13px; font-weight:600">Free Forever</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — MODULE DESCRIPTION
+     ============================================================ -->
+<section style="padding:60px 0 20px 0">
+  <div class="container">
+    <div class="text-center">
+      <h4 style="font-size:31px; font-weight:700; color:#1e293b; margin-bottom:10px">Customer Credit Warning on Sale Order</h4>
+      <div style="display:block; height:3px; width:80px; background:linear-gradient(90deg,#ea580c,#f97316); margin:16px auto 32px auto; border-radius:4px"></div>
+      <p style="color:#475569; font-size:18px; max-width:700px; margin:0 auto; line-height:1.7">
+        Stop accumulating bad debt. A lightweight module that <strong>automatically checks a customer's outstanding
+        balance</strong> when confirming a sale order. If they exceed their configured credit limit, the system
+        either shows a <strong>popup warning</strong> (salesperson can override) or <strong>blocks confirmation
+        entirely</strong> — per-partner, zero ongoing cost.
+        <br><br>
+        Odoo Enterprise charges $38/user/month partly for this feature. This module gives it to Community for free.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2b — PAIN POINTS & SOLUTION
+     ============================================================ -->
+<section style="padding:20px 0 50px 0; background-color:transparent">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Pain Points -->
+      <div class="col-md-6">
+        <div style="background:#fff5f5; border:1.5px solid #fecaca; border-radius:16px; padding:32px; height:100%">
+          <div style="font-size:22px; font-weight:800; color:#dc2626; margin-bottom:20px; display:flex; align-items:center; gap:10px">
+            <span style="font-size:28px">😓</span> The Problem
+          </div>
+          <ul style="list-style:none; padding:0; margin:0">
+            <li style="display:flex; gap:12px; margin-bottom:16px; align-items:flex-start">
+              <span style="color:#ef4444; font-size:18px; flex-shrink:0; margin-top:1px">✗</span>
+              <span style="color:#374151; font-size:15px; line-height:1.6">Sales reps confirm orders for customers who already owe large unpaid balances — no warning is shown.</span>
+            </li>
+            <li style="display:flex; gap:12px; margin-bottom:16px; align-items:flex-start">
+              <span style="color:#ef4444; font-size:18px; flex-shrink:0; margin-top:1px">✗</span>
+              <span style="color:#374151; font-size:15px; line-height:1.6">Bad debt accumulates silently month over month, only discovered during reconciliation — too late to act.</span>
+            </li>
+            <li style="display:flex; gap:12px; margin-bottom:16px; align-items:flex-start">
+              <span style="color:#ef4444; font-size:18px; flex-shrink:0; margin-top:1px">✗</span>
+              <span style="color:#374151; font-size:15px; line-height:1.6">Odoo Community has no built-in credit limit feature. The Enterprise version costs $38/user/month just to get this protection.</span>
+            </li>
+            <li style="display:flex; gap:12px; align-items:flex-start">
+              <span style="color:#ef4444; font-size:18px; flex-shrink:0; margin-top:1px">✗</span>
+              <span style="color:#374151; font-size:15px; line-height:1.6">Finance teams have no automated control — they can only react after the sale is already confirmed.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Solution -->
+      <div class="col-md-6">
+        <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:16px; padding:32px; height:100%">
+          <div style="font-size:22px; font-weight:800; color:#16a34a; margin-bottom:20px; display:flex; align-items:center; gap:10px">
+            <span style="font-size:28px">🎯</span> The Solution
+          </div>
+          <ul style="list-style:none; padding:0; margin:0">
+            <li style="display:flex; gap:12px; margin-bottom:16px; align-items:flex-start">
+              <span style="color:#22c55e; font-size:18px; flex-shrink:0; margin-top:1px">✓</span>
+              <span style="color:#374151; font-size:15px; line-height:1.6">Set a <strong>Credit Limit</strong> and <strong>mode (Warn / Block)</strong> on each partner in the Sales &amp; Purchase tab.</span>
+            </li>
+            <li style="display:flex; gap:12px; margin-bottom:16px; align-items:flex-start">
+              <span style="color:#22c55e; font-size:18px; flex-shrink:0; margin-top:1px">✓</span>
+              <span style="color:#374151; font-size:15px; line-height:1.6"><strong>Warn mode:</strong> popup dialog shows Current Debt vs Limit — salesperson can confirm anyway or cancel.</span>
+            </li>
+            <li style="display:flex; gap:12px; margin-bottom:16px; align-items:flex-start">
+              <span style="color:#22c55e; font-size:18px; flex-shrink:0; margin-top:1px">✓</span>
+              <span style="color:#374151; font-size:15px; line-height:1.6"><strong>Block mode:</strong> hard error prevents confirmation until the balance drops below the limit.</span>
+            </li>
+            <li style="display:flex; gap:12px; align-items:flex-start">
+              <span style="color:#22c55e; font-size:18px; flex-shrink:0; margin-top:1px">✓</span>
+              <span style="color:#374151; font-size:15px; line-height:1.6">Live <strong>Credit Status widget</strong> on the sale order form shows real-time debt and limit in the Other Info tab.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2c — DEMO GIF
+     ============================================================ -->
+<section style="padding:10px 0 40px 0; background-color:transparent">
+  <div class="container">
+    <div class="col-md-12">
+      <img class="img-responsive rounded" style="width:100%; border:2px solid #ea580c; border-radius:14px; box-shadow:0 8px 32px rgba(234,88,12,.18)" src="banner.gif" alt="Customer Credit Warning Demo">
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — FEATURES
+     ============================================================ -->
+<section style="padding:50px 0; background-color:transparent">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h4 style="font-size:28px; font-weight:700; color:#1e293b; margin-bottom:10px">Key Features</h4>
+      <div style="display:block; height:3px; width:60px; background:linear-gradient(90deg,#ea580c,#f97316); margin:12px auto 0 auto; border-radius:4px"></div>
+    </div>
+    <div class="row g-3">
+
+      <div class="col-md-6">
+        <div class="p-4 shadow rounded h-100 d-flex align-items-center" style="border:1px solid #ea580c; border-radius:12px !important">
+          <div style="border:1px solid #ea580c; padding:10px; border-radius:8px; margin-right:20px; display:flex; min-width:60px; min-height:60px; align-items:center; justify-content:center; background:#fff7ed">
+            <span style="font-size:28px">🔢</span>
+          </div>
+          <span style="font-size:16px; color:#1e293b; font-weight:600; letter-spacing:.5px">Credit Limit field on each partner — set 0 for no limit. Configured once in the Sales &amp; Purchase tab.</span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-4 shadow rounded h-100 d-flex align-items-center" style="border:1px solid #ea580c; border-radius:12px !important">
+          <div style="border:1px solid #ea580c; padding:10px; border-radius:8px; margin-right:20px; display:flex; min-width:60px; min-height:60px; align-items:center; justify-content:center; background:#fff7ed">
+            <span style="font-size:28px">💬</span>
+          </div>
+          <span style="font-size:16px; color:#1e293b; font-weight:600; letter-spacing:.5px">Warn mode: popup dialog with Current Debt &amp; Credit Limit — salesperson decides whether to proceed.</span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-4 shadow rounded h-100 d-flex align-items-center" style="border:1px solid #ea580c; border-radius:12px !important">
+          <div style="border:1px solid #ea580c; padding:10px; border-radius:8px; margin-right:20px; display:flex; min-width:60px; min-height:60px; align-items:center; justify-content:center; background:#fff7ed">
+            <span style="font-size:28px">🚫</span>
+          </div>
+          <span style="font-size:16px; color:#1e293b; font-weight:600; letter-spacing:.5px">Block mode: hard validation error prevents confirmation entirely until the balance is paid down.</span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-4 shadow rounded h-100 d-flex align-items-center" style="border:1px solid #ea580c; border-radius:12px !important">
+          <div style="border:1px solid #ea580c; padding:10px; border-radius:8px; margin-right:20px; display:flex; min-width:60px; min-height:60px; align-items:center; justify-content:center; background:#fff7ed">
+            <span style="font-size:28px">🔴</span>
+          </div>
+          <span style="font-size:16px; color:#1e293b; font-weight:600; letter-spacing:.5px">Red warning banner on the sale order form the moment a customer with exceeded credit is selected.</span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-4 shadow rounded h-100 d-flex align-items-center" style="border:1px solid #ea580c; border-radius:12px !important">
+          <div style="border:1px solid #ea580c; padding:10px; border-radius:8px; margin-right:20px; display:flex; min-width:60px; min-height:60px; align-items:center; justify-content:center; background:#fff7ed">
+            <span style="font-size:28px">📊</span>
+          </div>
+          <span style="font-size:16px; color:#1e293b; font-weight:600; letter-spacing:.5px">Credit Status group in Other Info tab — shows live Current Debt and Credit Limit on the order form.</span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-4 shadow rounded h-100 d-flex align-items-center" style="border:1px solid #ea580c; border-radius:12px !important">
+          <div style="border:1px solid #ea580c; padding:10px; border-radius:8px; margin-right:20px; display:flex; min-width:60px; min-height:60px; align-items:center; justify-content:center; background:#fff7ed">
+            <span style="font-size:28px">🔓</span>
+          </div>
+          <span style="font-size:16px; color:#1e293b; font-weight:600; letter-spacing:.5px">100% Free · LGPL-3 — replaces $38/user/month Enterprise feature. No paid tiers, no limitations.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — SCREENSHOTS & SETUP GUIDE
+     ============================================================ -->
+<section style="padding:50px 0; background-color:transparent">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h4 style="font-size:28px; font-weight:700; color:#1e293b; margin-bottom:10px">Setup Guide</h4>
+      <div style="display:block; height:3px; width:60px; background:linear-gradient(90deg,#ea580c,#f97316); margin:12px auto 0 auto; border-radius:4px"></div>
+    </div>
+
+    <p style="color:#1e293b; font-size:18px; margin-bottom:20px; font-weight:600">
+      1) Install the module. Go to <strong>Settings → Activate Developer Mode → Apps → Update Apps List</strong>,
+      search for <strong>"Customer Credit Warning"</strong> and click Install.
+    </p>
+
+    <p style="color:#1e293b; font-size:18px; margin-bottom:16px; font-weight:600">
+      2) Open any customer form. Navigate to the <strong>Sales &amp; Purchase</strong> tab and scroll down to the
+      <strong>Credit Warning</strong> group. Set a <strong>Credit Limit</strong> and choose the mode.
+    </p>
+    <div class="col-md-12">
+      <img class="img-responsive rounded" style="width:100%; border:1px solid #ea580c; border-radius:12px" src="screenshots/partner-credit-fields.png" alt="Partner Credit Fields">
+    </div>
+    <p style="color:#64748b; font-size:14px; text-align:center; margin:10px 0 32px 0; font-style:italic">
+      Credit Warning group on the partner form — Credit Limit and mode (Warning / Blocked) set per customer
+    </p>
+
+    <p style="color:#1e293b; font-size:18px; margin-bottom:16px; font-weight:600">
+      3) Create a sale order for a customer who has exceeded their limit. A <strong>red warning banner</strong>
+      appears immediately at the top of the form.
+    </p>
+    <div class="col-md-12">
+      <img class="img-responsive rounded" style="width:100%; border:1px solid #ea580c; border-radius:12px" src="screenshots/sale-order-warn-banner.png" alt="Credit Warning Banner on Sale Order">
+    </div>
+    <p style="color:#64748b; font-size:14px; text-align:center; margin:10px 0 32px 0; font-style:italic">
+      Red "Credit Limit Exceeded!" banner visible as soon as the over-limit customer is selected
+    </p>
+
+    <p style="color:#1e293b; font-size:18px; margin-bottom:16px; font-weight:600">
+      4) In <strong>Warn mode</strong>, clicking Confirm opens a dialog showing the exact debt and limit.
+      The salesperson can <strong>Confirm Anyway</strong> or <strong>Cancel</strong>.
+    </p>
+    <div class="col-md-12">
+      <img class="img-responsive rounded" style="width:100%; border:1px solid #ea580c; border-radius:12px" src="screenshots/warn-popup-dialog.png" alt="Credit Warning Popup Dialog">
+    </div>
+    <p style="color:#64748b; font-size:14px; text-align:center; margin:10px 0 32px 0; font-style:italic">
+      Warn mode popup — shows Sale Order, Customer, Current Debt ($1,500), Credit Limit ($1,000) with override option
+    </p>
+
+    <p style="color:#1e293b; font-size:18px; margin-bottom:16px; font-weight:600">
+      5) In <strong>Block mode</strong>, clicking Confirm shows a hard error dialog — the order
+      cannot be confirmed until the customer's balance drops below their limit.
+    </p>
+    <div class="col-md-12">
+      <img class="img-responsive rounded" style="width:100%; border:1px solid #ea580c; border-radius:12px" src="screenshots/block-error.png" alt="Block Mode Error">
+    </div>
+    <p style="color:#64748b; font-size:14px; text-align:center; margin:10px 0 32px 0; font-style:italic">
+      Block mode error — prevents confirmation and shows Current Debt vs Limit clearly
+    </p>
+
+    <p style="color:#1e293b; font-size:18px; margin-bottom:16px; font-weight:600">
+      6) The <strong>Credit Status</strong> group in the <strong>Other Info</strong> tab shows live
+      Current Debt and Credit Limit directly on the sale order (only visible when a limit is configured).
+    </p>
+    <div class="col-md-12">
+      <img class="img-responsive rounded" style="width:100%; border:1px solid #ea580c; border-radius:12px" src="screenshots/credit-status-other-info.png" alt="Credit Status in Other Info tab">
+    </div>
+    <p style="color:#64748b; font-size:14px; text-align:center; margin:10px 0 32px 0; font-style:italic">
+      Credit Status group in Other Info tab — Current Debt 1,500.00 vs Credit Limit 1,000.00 at a glance
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — FAQ
+     ============================================================ -->
+<section style="padding:50px 0; background-color:transparent">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h4 style="font-size:28px; font-weight:700; color:#1e293b; margin-bottom:10px">Frequently Asked Questions</h4>
+      <div style="display:block; height:3px; width:60px; background:linear-gradient(90deg,#ea580c,#f97316); margin:12px auto 0 auto; border-radius:4px"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="accordion" id="accordion_faq">
+
+          <div style="margin:1rem 0">
+            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#faq1" style="background-color:#f8f8f8; border:none; border-radius:10px 10px 0 0; padding:14px 24px; cursor:pointer">
+              <a class="card-title text-decoration-none" style="font-size:17px; font-weight:600; color:#1e293b">What does "Current Debt" include?</a>
+            </div>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#accordion_faq" style="border:1px solid #f8f8f8; border-radius:0 0 10px 10px">
+              <p style="padding:14px 24px; font-size:15px; color:#64748b; line-height:1.65; margin:0">
+                It uses Odoo's built-in <code>res.partner.credit</code> field — the total outstanding
+                receivable balance on all posted, unpaid invoices for the customer. This is the same
+                value shown in the Invoicing module's customer receivables view.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin:1rem 0">
+            <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#faq2" style="background-color:#f8f8f8; border:none; border-radius:10px 10px 0 0; padding:14px 24px; cursor:pointer">
+              <a class="card-title text-decoration-none" style="font-size:17px; font-weight:600; color:#1e293b">What is the difference between Warn and Block modes?</a>
+            </div>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#accordion_faq" style="border:1px solid #f8f8f8; border-radius:0 0 10px 10px">
+              <p style="padding:14px 24px; font-size:15px; color:#64748b; line-height:1.65; margin:0">
+                <strong>Warn</strong>: a dialog pops up showing the overage. The salesperson can choose
+                "Confirm Anyway" to proceed or "Cancel" to go back. Good for soft enforcement.
+                <br><br>
+                <strong>Block</strong>: a hard validation error is raised and the order cannot be confirmed
+                at all until the customer pays down their balance below the limit. Good for strict credit control.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin:1rem 0">
+            <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#faq3" style="background-color:#f8f8f8; border:none; border-radius:10px 10px 0 0; padding:14px 24px; cursor:pointer">
+              <a class="card-title text-decoration-none" style="font-size:17px; font-weight:600; color:#1e293b">How do I disable the check for a specific customer?</a>
+            </div>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#accordion_faq" style="border:1px solid #f8f8f8; border-radius:0 0 10px 10px">
+              <p style="padding:14px 24px; font-size:15px; color:#64748b; line-height:1.65; margin:0">
+                Set the <strong>Credit Limit</strong> to <code>0</code> on the partner form. A value of 0
+                means "no limit" — the check is completely bypassed for that customer.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin:1rem 0">
+            <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#faq4" style="background-color:#f8f8f8; border:none; border-radius:10px 10px 0 0; padding:14px 24px; cursor:pointer">
+              <a class="card-title text-decoration-none" style="font-size:17px; font-weight:600; color:#1e293b">Does this module modify any existing Odoo data?</a>
+            </div>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#accordion_faq" style="border:1px solid #f8f8f8; border-radius:0 0 10px 10px">
+              <p style="padding:14px 24px; font-size:15px; color:#64748b; line-height:1.65; margin:0">
+                No. It only <strong>adds</strong> two fields to <code>res.partner</code>
+                (<code>credit_limit</code> and <code>credit_mode</code>), extends the <code>sale.order</code>
+                model with computed display fields, and adds a transient wizard model. All existing data
+                is untouched. Uninstalling removes the added fields cleanly.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin:1rem 0">
+            <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#faq5" style="background-color:#f8f8f8; border:none; border-radius:10px 10px 0 0; padding:14px 24px; cursor:pointer">
+              <a class="card-title text-decoration-none" style="font-size:17px; font-weight:600; color:#1e293b">Does this require Odoo Enterprise?</a>
+            </div>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#accordion_faq" style="border:1px solid #f8f8f8; border-radius:0 0 10px 10px">
+              <p style="padding:14px 24px; font-size:15px; color:#64748b; line-height:1.65; margin:0">
+                No. This module is built specifically for <strong>Odoo 19 Community</strong>.
+                It depends only on <code>sale_management</code> and <code>account</code>, both of which
+                are available in the Community edition. No Enterprise license required.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — SUPPORT
+     ============================================================ -->
+<section style="padding:40px 0 60px 0; background-color:transparent">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h4 style="font-size:28px; font-weight:700; color:#1e293b; margin-bottom:10px">Support</h4>
+      <div style="display:block; height:3px; width:60px; background:linear-gradient(90deg,#ea580c,#f97316); margin:12px auto 0 auto; border-radius:4px"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <ul style="padding:0; list-style:none">
+          <li class="border rounded" style="padding:24px; margin-bottom:16px; border-color:#ea580c !important; border-radius:12px">
+            <a href="mailto:nextstep.vina@gmail.com" style="text-decoration:none; color:#1e293b; font-size:17px; font-weight:600; display:flex; align-items:center; gap:12px">
+              <span class="fa fa-envelope" style="color:#ea580c; font-size:22px"></span>
+              Email support: <strong style="color:#ea580c">nextstep.vina@gmail.com</strong>
+            </a>
+          </li>
+          <li class="border rounded" style="padding:24px; margin-bottom:16px; border-color:#ea580c !important; border-radius:12px">
+            <div style="font-size:16px; color:#475569; line-height:1.65">
+              <strong style="color:#1e293b">Response time:</strong> We aim to respond within 1–2 business days.
+              Please include your Odoo version and a description of the issue.
+            </div>
+          </li>
+          <li class="border rounded" style="padding:24px; border-color:#ea580c !important; border-radius:12px">
+            <div style="font-size:16px; color:#475569; line-height:1.65">
+              <strong style="color:#1e293b">Source code:</strong> LGPL-3 — free to use, modify, and redistribute.
+              Available on GitHub:
+              <a href="https://github.com/RandyNguyenN/partner_credit_warning" style="color:#ea580c; font-weight:600">
+                github.com/RandyNguyenN/partner_credit_warning
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
