@@ -12,8 +12,9 @@ Customer Credit Warning on Sale Order for Odoo 18 (Free / LGPL-3)
 - Live debt/limit widget on sale order form
 - Zero configuration — install, set limits, done
     """,
-    'author': 'Randy Nguyen',
-    'website': '',
+    'author': 'SunMesa Labs',
+    'website': 'https://odoo.sunmesalabs.com',
+    'support': 'randy@sunmesalabs.com',
     'license': 'LGPL-3',
     'depends': ['sale_management', 'account'],
     'data': [
