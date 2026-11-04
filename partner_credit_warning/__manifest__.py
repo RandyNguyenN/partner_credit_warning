@@ -1,6 +1,6 @@
 {
     'name': 'Customer Credit Warning on Sale Order',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Sales/Sales',
     'summary': 'Warn or block sale order confirmation when customer exceeds credit limit — free Community alternative to Odoo Enterprise credit feature.',
     'description': """
